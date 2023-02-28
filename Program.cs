@@ -5,9 +5,9 @@ using System.Text;
 using EventHandler;
 using Reflection;
 using System.Reflection;
-using System.Linq;
-using System.Linq.Expressions;
 using AreaOfCircle;
+using EncryptionDecryption;
+using System.Security.Cryptography;
 
 #pragma warning disable S125  // Sections of code should not be commented out
 
@@ -35,6 +35,10 @@ namespace PracticeAssignments
                 Console.WriteLine("09. Assignment 9:    Call Method Using Reflection");
                 Console.WriteLine("10. Assignment 10:   Generic Class");
                 Console.WriteLine("11. Assignment 11:   Truncate String after 20 Words");
+                Console.WriteLine("12. Assignment 12:   Remove spaces from string");
+                Console.WriteLine("13. Assignment 13:   Ticket Booking system");
+                Console.WriteLine("14. Assignment 14:   Async - Await");
+                Console.WriteLine("15. Assignment 15:   Encryption");
                 Console.Write("Choose Assignment(Press 0 to Exit):");
 
                 //Exceptions<int>.TryParse(Console.ReadLine(), out int choice);
@@ -429,6 +433,63 @@ namespace PracticeAssignments
 
                             Console.WriteLine("Another String");
                             Console.WriteLine("Hello this is Deepanshu Chauhan, I'm 21 years old. I hope this has become 20 letters long cause I'm not in mood of writing anymore See ya Have a Good Day!!".Truncate());
+
+                            break;
+
+                        case 12:
+
+                            Console.Clear();
+
+                            Console.Write("Enter a String:");
+                            str = Console.ReadLine();
+
+                            if (str != null)
+                                Console.WriteLine(String.Join("", str.Split(" ")));
+
+                            else
+                                Console.WriteLine("Please Enter a String.");
+
+                            break;
+
+                        case 13:
+
+                            Console.Clear();
+
+                            Console.WriteLine("Work in Progress");
+
+                            break;
+
+                        case 14:
+
+                            Console.Clear();
+
+                            FileHandling.WriteFile();
+
+                            break;
+
+                        case 15:
+
+                            Console.Clear();
+
+                            string? textToEncrypt;
+                            Console.Write("Enter string to encrypt:");
+                            textToEncrypt = Console.ReadLine();
+
+                            string encryptedText, decryptedText;
+                            byte[] encrypted;
+
+                            using (Aes myAes = Aes.Create())
+                            {
+                                encrypted = CryptographyAes.EncryptStringToBytes(textToEncrypt, myAes.Key, myAes.IV);
+                                encryptedText =  Encoding.UTF8.GetString(encrypted);
+                                decryptedText = CryptographyAes.DecryptStringFromBytes(encrypted,myAes.Key, myAes.IV);
+
+                                Console.WriteLine(encrypted);
+                                Console.WriteLine("Encrypted Text:");
+                                Console.WriteLine(encryptedText);
+                                Console.WriteLine("Decrypted Text:");
+                                Console.WriteLine(decryptedText);
+                            }
 
                             break;
 
